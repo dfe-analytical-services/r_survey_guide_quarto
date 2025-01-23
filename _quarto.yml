@@ -1,0 +1,30 @@
+project:
+  type: book
+
+book:
+  title: "SuRvey analysis guide in R"
+  chapters:
+    - index.qmd
+    - setting_up_workspace.qmd
+    - reading_labelling_data.qmd
+    - formatting_filtering.qmd
+    - freq_tables.qmd
+    - crosstabs.qmd
+    - summary_tables_and_avgs.qmd
+    - testing_sig.qmd
+    - testing_corr.qmd
+    - working_directory.qmd
+    - git.qmd
+    - custom_functions.qmd
+    - help.qmd
+
+format:
+  html:
+    theme:
+      dark: darkly
+      light: flatly
+    number-sections: true
+    number-depth: 3
+
+editor: visual
+

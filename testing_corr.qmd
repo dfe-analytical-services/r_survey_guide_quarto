@@ -1,0 +1,277 @@
+---
+title: "Testing for correlation" 
+---
+
+You can use `08_correlation.R` as a reference for this section.
+
+This section provides code for different types of correlation testing.
+
+## Load packages, functions and read in data {#load-packages-functions-and-read-in-data}
+
+You need to make sure you load the required packages and custom functions if you haven't already. You also need to read in the required data for this script.
+
+Even if you read in the data before, we recommend you re-run this code so that you're working with a data set without any alterations you may have done to it in previous scripts.
+
+::: callout-tip
+## Run the code
+
+Run the code below in the corresponding script in your project.
+:::
+
+```{r, eval=FALSE}
+
+# load packages and custom functions --------------------------------------
+
+
+source("00_packages_and_functions.R")
+
+
+# read in data for this script --------------------------------------------
+
+
+TELSdata <- haven::read_spss("data/TELS_DUMMY_DATA.sav"
+                             #ensures that user-defined missing values in the spss file
+                             # are read into R as NA
+                             # If you want to bring in these codes into analysis (e.g. you might be interested
+                             # in the share who refused) change to TRUE.
+                             , user_na=FALSE)
+
+
+```
+
+## Suitability of data {#suitability-of-data}
+
+In this section, we will cover correlation tests. Testing for correlation is used to determine whether there is a relationship between two variables. That testing can also be used to identify relationships between two [Likert scales](https://www.simplypsychology.org/likert-scale.html), for example, agreeing that a T Level has allowed learners to progress to what they want to do vs. feeling prepared for future career.
+
+Before doing correlation tests, we need to check that value codes are appropriate for correlation analysis.
+
+Correlation output is easier to understand when:
+
+-   negative responses are coded as a negative number
+
+-   positive responses are coded as a positive number
+
+-   neutral responses are coded as 0
+
+In the example below, we will look at checking and ensuring the suitability of the value codes in `Progress` and `PrepareCareer`.
+
+::: callout-tip
+## Run the code
+
+Run the code below in the corresponding script in your project. If you are starting from this point in the guide, remember to run lines from **the top of the script** to [read in the data and reload the packages and custom functions](#load-packages-functions-and-read-in-data).
+:::
+
+```{r, eval=FALSE}
+
+# Check value codes are appropriate for correlation analysis
+
+unique(TELSdata$Progress)
+unique(TELSdata$PrepareCareer)
+
+# re-code responses. negative responses = negative no
+# positive repose = positive no
+# neutral as 0
+
+TELSdata <- TELSdata %>%
+  dplyr::mutate(
+    #re-code progress
+    Progress_recode= dplyr::case_when(
+      Progress == 5 ~ -2,
+      Progress == 4 ~ -1,
+      Progress == 3 ~ 0,
+      Progress == 2 ~ 1,
+      Progress == 1 ~ 2),
+    #re-code preparecareer
+    PrepareCareer_recode=case_when(
+      PrepareCareer == 5 ~ -2,
+      PrepareCareer == 4 ~ -1,
+      PrepareCareer == 3 ~ 0,
+      PrepareCareer == 2 ~ 1,
+      PrepareCareer == 1 ~ 2)
+  )
+
+```
+
+Once variables are correctly coded for correlation analysis, decide what method is appropriate:
+
+-   Spearman's Rho: non-parametric test and ordinal data.
+
+-   Kendall's Tau: non-parametric test and small sample sizes
+
+-   Pearson's: parametric test and continuous data.
+
+## Spearman's Rho
+
+Spearman's is the most appropriate correlation method for most survey data since it's non-parametric and can work with ordinal data. For example, you could use Spearman's if you want to study the relationship between students' ranks in two different subjects, like Math and Science. Since the data are ordinal (ranks) and you want to assess the correlation between the two sets of ranks, you use Spearman's rho.
+
+However, there isn't currently an R function that can calculate Spearman's with weighted data. The function below is based on un-weighted data. This isn't a huge issue since it's a rank-based measure.
+
+Below, we are going to run code to examine the relationship between the progress of participants (shown by `Progress_recode`) and how prepared they feel for their career (shown by `PrepareCareer_recode`).
+
+::: callout-tip
+## Run the code
+
+Run the code below in the corresponding script in your project. If you are starting from this point in the guide, remember to run lines from **the top of the script** to [read in the data and reload the packages and custom functions](#load-packages-functions-and-read-in-data).
+:::
+
+```{r, eval=FALSE}
+
+cor_test <- stats::cor.test(
+  # specify the values you want to test for correlation
+  TELSdata$Progress_recode,
+  TELSdata$PrepareCareer_recode,
+  #indicate the alternative hypothesis
+  alternative = "two.sided",
+  # specify method
+  method =  "spearman",
+  #  specify confidence level
+  conf.level = 0.95)
+
+```
+
+After you run the code above, you should see in the console there is a Rho value of 0.6748364. This shows there is a positive correlation between `Progress_recode` and `PrepareCareer_recode`. This suggests that as `Progress_recode` increases, `PrepareCareer_recode` tends to increase as well, and vice versa. The p-value is \< 0.05, which indicates that this correlation is statistically significant.
+
+## Kendall's Tau
+
+Kendall's is similar to Spearman's, but it better suited to the following:
+
+-   small sample sizes, i.e. \<30.
+
+-   dealing with 'tied ranks'
+
+    -   this can be useful if you're correlating two short scales (i.e. higher probability of the same combination occurring).
+
+-   dealing with outliers.
+
+For example, you could use Kendall's if you are analyzing the consistency of rankings given by two assessors in an interview. The data are ordinal, and you want a measure that is robust to ties and small sample sizes. Kendall's is appropriate here because it handles ties better and is more robust in small samples compared to Spearman's Rho.
+
+Spearman's is more well known but Kendall's is growing in popularity and can be used in Spearman's place even with large samples.
+
+In the example below, we will replicate what we did for Spearman's correlation test but using Kendall's instead.
+
+::: callout-tip
+## Run the code
+
+Run the code below in the corresponding script in your project. If you are starting from this point in the guide, remember to run lines from **the top of the script** to [create extra dummy data and reload the packages and custom functions](#load-packages-functions-and-read-in-data).
+:::
+
+```{r, eval=FALSE}
+
+cor_test <- stats::cor.test(
+  # specify the values you want to test for correlation
+  TELSdata$Progress_recode,
+  TELSdata$PrepareCareer_recode,
+  #indicate the alternative hypothesis
+  alternative = "two.sided",
+  # specify method
+  method =  "kendall",
+  #  specify confidence level
+  conf.level = 0.95)
+
+```
+
+After you run the code above, you should see in the console there is a Tau value of 0.6271273. This shows there is a positive correlation between `Progress_recode` and `PrepareCareer_recode`. This suggests that as `Progress_recode` increases, `PrepareCareer_recode` tends to increase as well, and vice versa. The p-value is \< 0.05 which means that this correlation is statistically significant.
+
+## Pearson's
+
+It’s a way to measure the degree of a relationship between two linearly related variables. It uses the Pearson correlation coefficient test to compare the mean value of the product of the standard scores of matched pairs of observations. This yields an answer in the range of -1 to +1.
+
+To use the Pearson correlation, each variable must be continuous, and the shape of the variable’s relationship must be linear. If these two assumptions are not applicable, you should use Spearman’s correlation instead.
+
+For example, you could use Pearson's if you are investigating the relationship between the number of hours studied and the scores obtained in an exam. Both variables are continuous, and you assume a linear relationship between them. Pearson's correlation is suitable here as it measures the strength and direction of the linear relationship between the two continuous variables.
+
+In the code below, we will examine the correlation between age and income.
+
+::: callout-important
+The variables used in the syntax below are not appropriate for Pearson's since they are not continuous. They are only used as an example.
+:::
+
+::: callout-tip
+## Run the code
+
+Run the code below in the corresponding script in your project. If you are starting from this point in the guide, remember to run lines from **the top of the script** to [read in the data and reload the packages and custom functions](#load-packages-functions-and-read-in-data).
+:::
+
+```{r, eval=FALSE}
+
+#check that the dependent variable (age) has a numeric data type
+class(TELSdata$FF_Age2022)
+
+#change the data type from character to numeric (to reflect continuous values)
+
+TELSdata <- TELSdata %>%
+  dplyr::mutate(FF_Age2022=as.numeric(FF_Age2022))
+
+#create survey design object that outlines weights
+weight <- survey::svydesign(ids = ~1,
+                            weights = ~TechEd_W3_cross,
+                            data = TELSdata)
+
+
+#store the details in an object
+corr <- jtools::svycor(~age + income,
+                       design = weight,
+                       #removes NAs from the calculation
+                       na.rm=TRUE,
+                       #provide all details not just coefficient
+                       sig.stats=TRUE)
+
+#extract correlation coefficient
+corr$cors
+#extract p value
+corr$p.values
+#extract std error
+corr$std.err
+
+```
+
+The `corr$cors` should print in the console and show that the two variables have almost no correlation, and the p-value from `corr$p.values` is more than 0.01 so it's not significant.
+
+## Combine the learning
+
+It's important to bear in mind that the code in this guide can be combined to make your analysis more suitable to your needs.
+
+In the example below, we will do a correlation test on `Progress_recode` and `PrepareCareer_recode` after creating a [derived variable](formatting_filtering.qmd#deriving-variables) and [filtering](formatting_filtering.qmd#filtering) the data set.
+
+::: callout-tip
+## Run the code
+
+Run the code below in the corresponding script in your project. If you are starting from this point in the guide, remember to run lines from **the top of the script** to [read in the data and reload the packages and custom functions](#load-packages-functions-and-read-in-data). Make sure to run the lines for [re-coding](#suitability-of-data) the variables as well for this test.
+:::
+
+```{r, eval=FALSE}
+
+#create derived variable
+TELSdata <- TELSdata %>%
+  dplyr::mutate(Ful_recomm=case_when(
+    CurrentSit %in% c(1,2) & Recommend %in% c(1,2) ~ 1,
+    CurrentSit %in% c(1,2) & Recommend %in% c(4,5) ~ 2,
+    CurrentSit %in% c(4,5) & Recommend %in% c(1,2) ~ 3,
+    TRUE ~ 4))
+
+#label the derived variable column
+TELSdata <- TELSdata %>%
+  dplyr::mutate(Ful_recomm= haven::labelled(Ful_recomm,
+                                            labels=c("Fulfilled and recommend" = 1,
+                                                     "Fulfilled but don't recommend" = 2,
+                                                     "Not Fulfilled and don't recommend" = 3,
+                                                     "Other" = 4
+                                            ) ))
+
+#create a filtered data set for fulfilled and recommend
+tels_ful_recomm <- TELSdata %>%
+  dplyr::filter(Ful_recomm==1)
+
+#carry out correlation test on the filtered data set to test correlation between
+# Progress_recode and PrepareCareer_recode
+stats::cor.test(
+  # specify the variables you want to test for correlation
+  tels_ful_recomm$Progress_recode,
+  tels_ful_recomm$PrepareCareer_recode,
+  #indicate the alternative hypothesis
+  alternative = "two.sided",
+  # specify method
+  method =  "spearman",
+  #  specify confidence level
+  conf.level = 0.95)
+```

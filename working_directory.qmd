@@ -1,0 +1,68 @@
+---
+title: "Working directory"
+---
+
+You can use `09_working_directory.R` as a reference for this section.
+
+## What is a working directory (wd)?
+
+In R, the working directory is the folder on your computer where R reads and saves files by default. Think of it as the current location where R looks for data files when you load them and where it stores the results when you save them. In this section, we will look at managing the wd in your projects in an efficient way.
+
+## Checking current working directory
+
+The default wd is usually the file path of your R project folder. You can check this by running the code below.
+
+::: callout-important
+## Run the code
+
+Run the code below.
+:::
+
+```{r, eval=FALSE}
+
+#check working directory path 
+getwd()
+
+```
+
+You should see something similar to `"C:/Users/<your_username>/r_survey_guide"` in the console. This means that files are automatically read and written to this path.
+
+## Changing working directory
+
+If you have sensitive data that must be kept in certain folders, then you can change your wd to read in that data without moving it. However, we need to ensure that we revert the wd back to its original state so that no problems happen with the code later on. We will do this by:
+
+-   saving the original wd as a variable.
+-   saving the sensitive folder path as a variable.
+-   alternating between them as needed using `setwd()` function.
+
+::: callout-important
+## Run the code
+
+Adapt the code below and run it for your own personal project when you need to change the working directory. Otherwise, this code will not work.
+:::
+
+::: callout-warning
+## Using forward slashes
+
+When using folder paths in R, it is important to use forward slashes (/) instead of back slashes (\\) which are traditionally used in file paths in Windows. Other wise the code will not work because the path will not be recognized. This applies to reading and saving files too.
+:::
+
+```{r, eval=FALSE}
+
+#store project's wd
+project_wd <- getwd()
+
+#store wd of sensitive folders you need data from
+#path must be separated with the slashes shown below
+
+secure_folder_wd <- "E:/Publication/Data"
+
+#set wd to sensitive folder
+
+setwd(secure_folder_wd)
+
+#to return to original wd,
+
+setwd(project_wd)
+
+```
