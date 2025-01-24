@@ -68,7 +68,7 @@ If you have the latest version of R downloaded but RStudio still shows an older 
 
 Follow the instructions below to download the scripts required for this guide.
 
--   [Go to the repo](https://dfe-gov-uk.visualstudio.com/skills-policy-analysis/_git/r_survey_analysis_guide).
+-   [Go to the repo](https://github.com/dfe-analytical-services/r_survey_analysis_guide).
 
 -   Click on "Code".
 
