@@ -6,11 +6,11 @@ You can use `05_crosstabs.R` as a reference for this section.
 
 You can cross tabulate two or three variables using the custom function `survey_crosstab()`. It can be used to create:
 
--   weighted and un-weighted crosstabs
+-   weighted and unweighted crosstabs
 -   crosstabs for one variable or over multiple variables
 -   two- or three-way crosstabs
 
-The options listed above are not separate outputs. For example, you can create a weighted two-way cross tabulation for a single variable, or you can create an un-weighted three-way cross tabulation for multiple variables, etc.
+The options listed above are not separate outputs. For example, you can create a weighted two-way cross tabulation for a single variable, or you can create an unweighted three-way cross tabulation for multiple variables, etc.
 
 ::: callout-note
 ## WEIGHTS
@@ -33,7 +33,7 @@ All functions on this page have three modes of output:
 
 -   `"download"`: save as an Excel sheet in the working directory - single and multiple variables
 
-**NOTE:** if you use a function to download multiple tables without using `table_name` to specify different table names for your outputs then your table will be overwritten every time you download it.
+**NOTE:** If you use a function to download multiple tables without using `table_name` to specify different table names for your outputs then your table will be overwritten every time you download it.
 :::
 
 ## x, y and z
@@ -43,7 +43,6 @@ You will use the parameters `x`, `y` and `z` in this section for the `survey_cro
 -   `x`: This is the independent variable. It's the main variable you want to analyze.
 -   `y`: This is the dependent variable. It's the variable you want to see in relation to the independent variable.
 -   `z`: This is the control variable. It adds a third dimension to your crosstab, allowing you to see how the relationship between x and y changes across different levels of z.
-
 
 ## Load packages, functions and read in data {#load-packages-functions-and-read-in-data}
 
@@ -86,7 +85,7 @@ This section will cover how to use the custom function `survey_crosstab()`. The 
 
 -   A column for the categories in the z variable - for three-way cross tabulations
 
--   A column for the categories in the y variable for two-way crosstabs. For three-way crosstabs, these values will be across a row instead so that the data is in wide format. 
+-   A column for the categories in the y variable for two-way crosstabs. For three-way crosstabs, these values will be across a row instead so that the data is in wide format.
 
 -   Freq - contains frequencies
 
@@ -96,14 +95,14 @@ This section will cover how to use the custom function `survey_crosstab()`. The 
 
 ### Single variables
 
-You can use `survey_crosstab()` for a single variable (column). This means that the function will create a table based on that variable alone. You can so this for two-way or three-way crosstabs. The table generated this way can be saved to the environment, printed or downloaded as an Excel document.
+You can use `survey_crosstab()` for a single variable (column). This means that the function will create a table based on that variable alone. You can do this for two-way or three-way crosstabs. The table generated this way can be saved to the environment, printed or downloaded as an Excel document.
 
 #### Two-way cross tabs
 
 ::: callout-important
 ## Data format
 
-The `survey_crosstab()` will create tables in a long format for two-way crosstabs as they are better for data analysis. If you want to convert the data to wide format, you can use the [documentation for the `tidyr::pivot_wider()`](https://tidyr.tidyverse.org/reference/pivot_wider.html) function to help you do that.
+The `survey_crosstab()` function will create tables in a long format for two-way crosstabs as they are better for data analysis. If you want to convert the data to wide format, you can use the [documentation for the `tidyr::pivot_wider()`](https://tidyr.tidyverse.org/reference/pivot_wider.html) function to help you do that.
 :::
 
 We will create a cross tabulation for `FF_Sex` and `WrkStud` below.
@@ -159,7 +158,7 @@ survey_crosstab(
 )
 ```
 
-You should see an output similar to the image below in the console, after you run the code above. You will also see a version of that saved in the environment under `sex_work_stud_cross` and an XLSX file called `survey_crosstab` in your R project folder with the same output. The output shows a cross tabulation between `FF_Sex` and `WrkStud` variables. It shows the frequencies, totals and proportions. The totals column (`n`) only has two numbers as it is the totals for each variable, `FF_Sex` and `WrkStud`.
+You should see an output similar to the image below in the console, after you run the code above. You will also see a version of that saved in the environment under `sex_work_stud_cross` and an XLSX file called `survey_crosstab` in your R project folder with the same output. The output shows a cross tabulation between `FF_Sex` and `WrkStud` variables. It shows the frequencies, totals and proportions. The totals column (`n`) only has two numbers as they are the totals for each variable, `FF_Sex` and `WrkStud`.
 
 ![](images/2way_crosstab.png){fig-alt="Two way crosstab of FF_Sex and WrkStud."}
 
@@ -168,7 +167,7 @@ You should see an output similar to the image below in the console, after you ru
 ::: callout-important
 ## Data format
 
-The `survey_crosstab()` will create tables in wide format for three-way crosstabs in order to make it easier to read the data. If you want to convert the data to long format, you can use the [documentation for the `tidyr::pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) function to help you do that.
+The `survey_crosstab()` function will create tables in wide format for three-way crosstabs in order to make it easier to read the data. If you want to convert the data to long format, you can use the [documentation for the `tidyr::pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) function to help you do that.
 :::
 
 We will create a cross tabulation between `FF_Sex`, `WrkStud` and `DV_Ethnicity` below.
@@ -292,17 +291,17 @@ survey_crosstab(
 
 ```
 
-## Un-weighted data
+## unweighted data
 
-To create un-weighted cross tabulations for your data, omit the specification of the weight parameter in the `survey_crosstab()` function.
+To create unweighted cross tabulations for your data, omit the specification of the weight parameter in the `survey_crosstab()` function.
 
 ::: {.callout-note collapse="true"}
-## Optional - Find out how we create un-weighted cross tabulations
+## Optional - Find out how we create unweighted cross tabulations
 
 When you don't specify the weight parameter, it automatically becomes assigned `NULL`. This prompts `survey_crosstab()` to create an artificial weight set to 1 (i.e. every case is treated equally) and use that instead.
 :::
 
-The example below shows how to create un-weighted cross tabulations using `survey_crosstab()`.
+The example below shows how to create unweighted cross tabulations using `survey_crosstab()`.
 
 ::: callout-tip
 ## Run the code
@@ -311,7 +310,7 @@ Run the code below in the corresponding script in your project. If you are start
 :::
 
 ```{r, eval=FALSE}
-# un-weighted three way cross tabs - FF_Sex, WrkStud and DV_Ethnicity
+# unweighted three way cross tabs - FF_Sex, WrkStud and DV_Ethnicity
 
 #print
 survey_crosstab(
@@ -328,7 +327,7 @@ survey_crosstab(
 )
 
 
-# un-weighted three way cross tabs - FF_Sex, WrkStud and multiple variables
+# unweighted three way cross tabs - FF_Sex, WrkStud and multiple variables
 
 survey_crosstab(
   #outline data

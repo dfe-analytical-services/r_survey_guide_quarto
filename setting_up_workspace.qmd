@@ -10,14 +10,14 @@ This section covers how to set up your R workspace. The [renv](#renv) and [loadi
 
 `renv` is a package that helps you create reproducible environments for your R projects. It gives you a separate library for each project. This gives you the benefits of isolation: different projects can use different versions of packages, and installing, updating, or removing packages in one project doesn’t affect any other project.
 
-This is important because packages get updated by their creators all the time and the functions in those packages may be updated in a way which would stop our code from working as it is currently written. Using `renv` allows us to run our processes without the risk of our code not working because of package updates. This gives us time to work on updating code without having to rush or miss deadlines.
+This is important because packages get updated by their creators all the time and the functions in those packages may be updated in a way that would stop our code from working as it is currently written. Using `renv` allows us to run our processes without the risk of our code not working because of package updates. This gives us time to work on updating code without having to rush or miss deadlines.
 
 Below is how to install all the packages needed for this project in the correct version using `renv`.
 
 ::: callout-important
 ## How often do I need to do this?
 
-This step only needs to be done ONCE each time a project that uses `renv` is downloaded, forked or cloned from the repo. You do NOT need to do every time you open a project.
+This step only needs to be done ONCE each time a project that uses `renv` is downloaded, forked or cloned from the repo. You do NOT need to do this every time you open a project.
 
 You will know if a project uses `renv` if you see a `renv` folder in the project.
 :::
@@ -42,7 +42,7 @@ After you run the code above, a message that says `"Do you want to proceed? [Y/n
 
 ### Step 2 - Download any missing packages
 
-Now we need to compare the packages you have already to the packages needed by this project. To do this, you need to run the code below. 
+Now we need to compare the packages you have already to the packages needed by this project. To do this, you need to run the code below.
 
 ::: callout-tip
 ## Run the code
@@ -58,7 +58,6 @@ renv::restore()
 ```
 
 After you run the code above, a list of the packages that are not installed at all or not installed in the correct version will appear in the console. This is followed by a message that says `"Do you want to proceed? [Y/n]?"`. You need to type `Y` and press enter to download the required in the correct versions. An example of this message is shown in the image below.
-
 
 ![](images/renv.png){fig-alt="A messgae in the console saying 'Do you want to proceed? [Y/n]?'."}
 

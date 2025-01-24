@@ -41,7 +41,7 @@ TELSdata <- haven::read_spss("data/TELS_DUMMY_DATA.sav"
 
 ## Suitability of data {#suitability-of-data}
 
-In this section, we will cover correlation tests. Testing for correlation is used to determine whether there is a relationship between two variables. That testing can also be used to identify relationships between two [Likert scales](https://www.simplypsychology.org/likert-scale.html), for example, agreeing that a T Level has allowed learners to progress to what they want to do vs. feeling prepared for future career.
+In this section, we will cover correlation tests. Testing for correlation is used to determine whether there is a relationship between two variables. That testing can also be used to identify relationships between two [Likert scales](https://www.simplypsychology.org/likert-scale.html), for example, agreeing that a T Level has allowed learners to progress to what they want to do vs. feeling prepared for their future career.
 
 Before doing correlation tests, we need to check that value codes are appropriate for correlation analysis.
 
@@ -104,7 +104,7 @@ Once variables are correctly coded for correlation analysis, decide what method 
 
 Spearman's is the most appropriate correlation method for most survey data since it's non-parametric and can work with ordinal data. For example, you could use Spearman's if you want to study the relationship between students' ranks in two different subjects, like Math and Science. Since the data are ordinal (ranks) and you want to assess the correlation between the two sets of ranks, you use Spearman's rho.
 
-However, there isn't currently an R function that can calculate Spearman's with weighted data. The function below is based on un-weighted data. This isn't a huge issue since it's a rank-based measure.
+However, there isn't currently an R function that can calculate Spearman's with weighted data. The function below is based on unweighted data. This isn't a huge issue since it's a rank-based measure.
 
 Below, we are going to run code to examine the relationship between the progress of participants (shown by `Progress_recode`) and how prepared they feel for their career (shown by `PrepareCareer_recode`).
 
@@ -133,19 +133,19 @@ After you run the code above, you should see in the console there is a Rho value
 
 ## Kendall's Tau
 
-Kendall's is similar to Spearman's, but it better suited to the following:
+Kendall's is similar to Spearman's, but it is better suited to the following:
 
--   small sample sizes, i.e. \<30.
+-   small sample sizes, i.e., \<30.
 
 -   dealing with 'tied ranks'
 
-    -   this can be useful if you're correlating two short scales (i.e. higher probability of the same combination occurring).
+    -   this can be useful if you're correlating two short scales (i.e., higher probability of the same combination occurring).
 
 -   dealing with outliers.
 
 For example, you could use Kendall's if you are analyzing the consistency of rankings given by two assessors in an interview. The data are ordinal, and you want a measure that is robust to ties and small sample sizes. Kendall's is appropriate here because it handles ties better and is more robust in small samples compared to Spearman's Rho.
 
-Spearman's is more well known but Kendall's is growing in popularity and can be used in Spearman's place even with large samples.
+Spearman's is more well known, but Kendall's is growing in popularity and can be used in Spearman's place even with large samples.
 
 In the example below, we will replicate what we did for Spearman's correlation test but using Kendall's instead.
 
@@ -170,7 +170,7 @@ cor_test <- stats::cor.test(
 
 ```
 
-After you run the code above, you should see in the console there is a Tau value of 0.6271273. This shows there is a positive correlation between `Progress_recode` and `PrepareCareer_recode`. This suggests that as `Progress_recode` increases, `PrepareCareer_recode` tends to increase as well, and vice versa. The p-value is \< 0.05 which means that this correlation is statistically significant.
+After you run the code above, you should see in the console there is a Tau value of 0.6271273. This shows there is a positive correlation between `Progress_recode` and `PrepareCareer_recode`. This suggests that as `Progress_recode` increases, `PrepareCareer_recode` tends to increase as well, and vice versa. The p-value is \< 0.05, which means that this correlation is statistically significant.
 
 ## Pearson's
 

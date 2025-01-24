@@ -4,7 +4,7 @@ title: "Frequency tables"
 
 You can use `04_frequency_tables.R` as a reference for this section.
 
-This section will cover how to use the custom function `survey_freq_table().` This function can be used to create weighted and un-weighted frequency tables. It can also be used for one variable or over multiple variables.
+This section will cover how to use the custom function `survey_freq_table().` This function can be used to create weighted and unweighted frequency tables. It can also be used for one variable or over multiple variables.
 
 ::: callout-note
 ## WEIGHTS
@@ -154,17 +154,17 @@ survey_freq_table(data=TELSdata,
 
 ```
 
-## Un-weighted data
+## unweighted data
 
-To create un-weighted frequency tables for your data, omit the specification of the weight parameter in the `survey_freq_table()` function.
+To create unweighted frequency tables for your data, omit the specification of the weight parameter in the `survey_freq_table()` function.
 
 ::: {.callout-note collapse="true"}
-## Optional - Find out how we create un-weighted frequency tables
+## Optional - Find out how we create unweighted frequency tables
 
 When you don't specify the weight parameter, it automatically becomes assigned `NULL`. This prompts `survey_freq_table()` to create an artificial weight set to 1 (i.e. every case is treated equally) and use that instead.
 :::
 
-The example below shows how to create un-weighted frequency tables using `survey_freq_table()` for `WrkStud`.
+The example below shows how to create unweighted frequency tables using `survey_freq_table()` for `WrkStud`.
 
 ::: callout-tip
 ## Run the code

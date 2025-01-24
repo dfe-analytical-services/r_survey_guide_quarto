@@ -19,7 +19,7 @@ R does not round, so results are slightly more accurate. You may find that resul
 ::: callout-important
 ## Which test should I use?
 
-The `sjstats` package provides useful documentation to help you decide which test is most appropriate. Run `?chi_squared_test` in the console and a guide will pop up in the "Help" panel in the right-hand side.
+The `sjstats` package provides useful documentation to help you decide which test is most appropriate. Run `?chi_squared_test` in the console and a guide will pop up in the "Help" panel on the right-hand side.
 :::
 
 ## Load packages, functions and read in data {#load-packages-functions-and-read-in-data}
@@ -57,11 +57,11 @@ TELSdata <- haven::read_spss("data/TELS_DUMMY_DATA.sav"
 
 ## Non-parametric tests
 
-Non-parametric tests do not assume a distribution of the data (e.g. normal), do not require knowledge about the population and are suitable for ordinal data. For these reasons, these tests are most appropriate for use in survey data.
+Non-parametric tests do not assume a distribution of the data (e.g., normal), do not require knowledge about the population and are suitable for ordinal data. For these reasons, these tests are most appropriate for use in survey data.
 
 ### Chi-squared {#chi-squared}
 
-Chi-squared tests are used to work out if there is significant association between two independent variables. For example, if you want to determine if there is a significant association between gender (male/female) and preference for a new product (like/dislike). You can collect data from a survey where each participant is only surveyed once (unpaired). You use an unpaired chi-squared test to see if the observed frequencies of preferences differ significantly from what would be expected by chance.
+Chi-squared tests are used to work out if there is a significant association between two independent variables. For example, if you want to determine if there is a significant association between gender (male/female) and preference for a new product (like/dislike). You can collect data from a survey where each participant is only surveyed once (unpaired). You use an unpaired chi-squared test to see if the observed frequencies of preferences differ significantly from what would be expected by chance.
 
 Data should be categorical to run this test, so you should re-code ordinal data if you want to use chi-squared for it.
 
@@ -130,7 +130,7 @@ You should see in the console that the p-value is \<0.05. This means that there 
 
 This test is designed for comparing ordinal data across two groups for two independent samples, e.g., comparing the customer satisfaction ratings (on a scale of 1 to 5) between two different stores. Since the ratings are ordinal and may not be normally distributed, you use the Mann-Whitney U test to compare the two independent groups.
 
-You can Interpret the scores as follows:
+You can interpret the scores as follows:
 
 -   Small effect \>= 0.1
 
@@ -372,7 +372,7 @@ After you run the code above, you should see in the console that there is a stat
 
 #### One-Sample T-test:
 
-The independent variable is a single group compared to a known value or population mean. In the example below, we will compare income variable to its mean.
+The independent variable is a single group compared to a known value or population mean. In the example below, we will compare the income variable to its mean.
 
 ::: callout-tip
 ## Run the code
@@ -396,14 +396,14 @@ After you run the code above, you should see in the console that there is no sta
 ::: callout-warning
 ## Data types
 
-Ensure that you have the correct data types for all tests but ensure this for t-tests and z-tests in particular as the functions are stricter with data types. They require numeric (continuous) type data.
+Ensure that you have the correct data types for all tests, but ensure this for t-tests and z-tests in particular, as the functions are stricter with data types. They require numeric (continuous) type data.
 :::
 
 Z-tests are used to determine whether there is a significant difference between sample and population means or between the means of two samples. For example, if you are comparing the average height of a sample of adult men to the known population mean height, you would use a z-test. Since you know the population standard deviation and have a large sample size, you use a z-test to determine if the sample mean significantly differs from the population mean.
 
 Another example of when it is useful is when comparing the percentage of people who are satisfied between two groups (e.g. IoT (Institution of Technology) learner vs. non-IoT (non-Institution of Technology) learner).
 
-We're going to outline weighted counts and sample sizes in the example below. e.g. 86 in 185 (46%), 528 in 948 (56%).
+We're going to outline weighted counts and sample sizes in the example below. e.g., 86 in 185 (46%), 528 in 948 (56%).
 
 ::: callout-tip
 ## Run the code

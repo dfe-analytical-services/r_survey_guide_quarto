@@ -16,7 +16,7 @@ It is important to read the documentation here or for other functions if you are
 
 ## What are custom functions and why are we using them?
 
-Custom functions are functions that are not part of a package. We are using them to make using functions from published packages like `survey` more user friendly.
+Custom functions are functions that are not part of a package. We are using them to make using functions from published packages like `survey` more user-friendly.
 
 ## Labelling data
 
@@ -94,7 +94,7 @@ labelled_df <- labelling_data(
 
 ### survey_freq_table()
 
-Create weighted and un-weighted flexible frequency tables with the following columns:
+Create weighted and unweighted flexible frequency tables with the following columns:
 
 -   A column with the name of the variable you want the frequency table for
 
@@ -120,7 +120,7 @@ survey_freq_table (data,
 
 `variables` The column name(s) for variable(s) you want the frequency table for. Must be in quotes.
 
-`weight` OPTIONAL - The name of the column that contains the weights. Must be in quotes. Default is `NULL` for un-weighted tables.
+`weight` OPTIONAL - The name of the column that contains the weights. Must be in quotes. Default is `NULL` for unweighted tables.
 
 `output` OPTIONAL FOR SINGLE VARIABLES - The type of output you want from the function. The available options are `NULL`, `"download"` and `"print"`.
 
@@ -156,7 +156,7 @@ survey_freq_table(df,
                  variables = "var_1",
                  weight = "weight")
 
-#create an un-weighted frequency table 
+#create an unweighted frequency table 
 
 survey_freq_table(df,
                  variables = "var_1")
@@ -182,7 +182,7 @@ survey_freq_table(df,
 
 ### survey_crosstab()
 
-Create weighted and un-weighted crosstabs with the following columns:
+Create weighted and unweighted crosstabs with the following columns:
 
 -   A column for the categories in the x variable
 
@@ -216,7 +216,7 @@ survey_crosstab (data ,
 
 `z` OPTIONAL FOR 3 WAY CROSSTABS - The column name for the second control variable. Must be in quotes.
 
-`weight` OPTIONAL - The name of the column that contains the weights. If `NULL`, table will be un-weighted.
+`weight` OPTIONAL - The name of the column that contains the weights. If `NULL`, table will be unweighted.
 
 `output` OPTIONAL FOR SINGLE VARIABLES - The type of output you want from the function. The available options are NULL, "download" and "print".
 
@@ -256,7 +256,7 @@ survey_crosstab(df,
                 y= "var_2",
                 weight = "weight")
 
-#create an un-weighted crosstab
+#create an unweighted crosstab
 
 survey_crosstab(df,
                 x = "var_1",
@@ -294,11 +294,11 @@ survey_crosstab(df,
 
 ## Creating summary tables
 
-Create weighted and un-weighted summary tables with the following columns:
+Create weighted and unweighted summary tables with the following columns:
 
 -   the variable name
 
--   un-weighted observations
+-   unweighted observations
 
 -   weighted observations - weighted tables only
 
@@ -308,7 +308,7 @@ Create weighted and un-weighted summary tables with the following columns:
 
 -   maximum value
 
--   un-weighted missing values
+-   unweighted missing values
 
 -   weighted missing values - weighted tables only
 
@@ -329,7 +329,7 @@ create_summary_table (data,
 
 `variables` The column name(s) for variable(s) you want the summary table for. Must be in quotes. These need to be numeric and not categorical data.
 
-`weight` OPTIONAL - The name of the column that contains the weights. If `NULL`, table will be un-weighted.
+`weight` OPTIONAL - The name of the column that contains the weights. If `NULL`, table will be unweighted.
 
 `output` OPTIONAL FOR SINGLE VARIABLES - The type of output you want from the function. The available options are NULL, "download" and "print".
 
@@ -366,7 +366,7 @@ create_summary_table(df,
                  variables = "var_1",
                  weight = "weight")
 
-#create an un-weighted summary table 
+#create an unweighted summary table 
 
 create_summary_table(df,
                  variables = "var_1")

@@ -1,6 +1,6 @@
 ## Introduction {.unnumbered}
 
-This is a guide on how to carry out routine analysis that is usually carried out in SPSS but in R. All the instructions for this guide are on this website and the code are in the scripts in the repository linked on this page in the [Get the code](#get-the-code) section. It includes sections about how to:
+This is a guide on how to carry out routine analysis that is usually carried out in SPSS but in R. All the instructions for this guide are on this website and the code is in the scripts in the repository linked on this page in the [Get the code](#get-the-code) section. It includes sections about how to:
 
 1.  set up your workspace
 
@@ -30,7 +30,7 @@ There are different ways to use this guide. You can:
 
 -   use it for your own projects
 
-::: {.callout-important}
+::: callout-important
 ## Essential steps
 
 To use this guide to learn or for your own projects, you MUST complete steps 1, 2 and 3 below.
@@ -42,7 +42,7 @@ To use this guide to learn or for your own projects, you MUST complete steps 1, 
 
 -   Download the following software:
 
-    -   R for windows 4.4 or higher
+    -   R for Windows 4.4 or higher
     -   RStudio
     -   RTools 4.4 or higher
 
@@ -110,7 +110,7 @@ To open scripts for this guide in a project environment, follow these steps:
 
 -   Open the folder your project is in.
 
--   Double click on the file with a R cube symbol next to it. This file has the file type `R Project`. You can check this by looking at the file properties.
+-   Double click on the file with an R cube symbol next to it. This file has the file type `R Project`. You can check this by looking at the file properties.
 
 ![](images/r_project.png){fig-alt="The folder that contains the code with the R Project file highlighted."}
 
@@ -152,14 +152,14 @@ R does not round, so results are slightly more accurate. You may find that resul
 
 ### Custom functions
 
-We created custom functions to make using packages like survey even more user friendly. We explain how to use those functions throughout this guide. You can use [Custom functions reference](custom_functions.qmd) as quick guide for those functions.
+We created custom functions to make using packages like survey even more user-friendly. We explain how to use those functions throughout this guide. You can use the [Custom functions reference](custom_functions.qmd) page as a quick guide for those functions.
 
 ### Syntax
 
-You will notice in this guide that most of the syntax for functions will follow this format `package::function()`. For example, `dplyr::mutate()` or `haven::read_spss()`. This means that we are using the `mutate()` function from the `dplyr` package and the `read_spss()` function from the `haven` package. We use this syntax to ensure that:
+You will notice in this guide that most of the syntax for functions will follow this format, `package::function()`. For example, `dplyr::mutate()` or `haven::read_spss()`. This means that we are using the `mutate()` function from the `dplyr` package and the `read_spss()` function from the `haven` package. We use this syntax to ensure that:
 
 -   the correct function from the intended package is used.
--   users are aware which package that function comes from so they can look at documentation when reviewing code.
+-   users are aware of which package that function comes from so they can look at documentation when reviewing code.
 
 This is because different packages can have functions with the same name. If you load those packages together in one project, it is difficult to know which function you are using and you can end up using the wrong one. This can lead to inaccurate results.
 
@@ -187,7 +187,7 @@ This package is useful for producing:
 
 -   weighted averages
 
-Functions this package are part of the custom functions you will be using in this guide.
+Functions in this package are part of the custom functions you will be using in this guide.
 
 [Find out more information about survey.](https://www.rdocumentation.org/packages/survey/versions/4.4-2)
 

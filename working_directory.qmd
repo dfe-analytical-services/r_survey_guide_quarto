@@ -44,7 +44,7 @@ Adapt the code below and run it for your own personal project when you need to c
 ::: callout-warning
 ## Using forward slashes
 
-When using folder paths in R, it is important to use forward slashes (/) instead of back slashes (\\) which are traditionally used in file paths in Windows. Other wise the code will not work because the path will not be recognized. This applies to reading and saving files too.
+When using folder paths in R, it is important to use forward slashes (/) instead of backslashes (\\) which are traditionally used in file paths in Windows. Otherwise the code will not work because the path will not be recognized. This applies to reading and saving files too.
 :::
 
 ```{r, eval=FALSE}

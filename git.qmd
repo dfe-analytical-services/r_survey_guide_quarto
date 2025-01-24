@@ -14,7 +14,7 @@ If you are interested in learning on how to work with Git, you can use the follo
 
 -   [DfE analyst guide Git tips](https://dfe-analytical-services.github.io/analysts-guide/learning-development/git.html).
 
--   [Lean about using Azure DevOps](https://dfe-analytical-services.github.io/azure-devops-for-analysis/preface.html)
+-   [Learn about using Azure DevOps](https://dfe-analytical-services.github.io/azure-devops-for-analysis/preface.html)
 
 -   [Avoid revealing sensitive information when working with Git](https://dfe-analytical-services.github.io/analysts-guide/RAP/rap-statistics.html#avoid-revealing-sensitive-information)
 

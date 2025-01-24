@@ -47,7 +47,7 @@ Before re-coding, it's useful to run a frequency of the variable to see how resu
 We will be using the function `survey_freq_table()` and `survey_crosstab()` to create frequency tables and crosstabs in this section to check our work. We will expand on these later on but for now, we will use them to create tables as shown in the code examples.
 :::
 
-In this example, I want to re-code the Grade variable so that I have a 'pass' and 'fail'. To do this we will need to:
+In this example, I want to re-code the `Grade` variable so that I have a 'pass' and 'fail'. To do this we will need to:
 
 -   check what the data looks like before re-coding
 
@@ -209,7 +209,7 @@ TELSdata %>%
   dplyr::distinct(InstitutionAwareness_recode)
 ```
 
-You should see a list of codes in the `InstitutionAwareness` in the console output and then after you run `dplyr::na_if()`, you should see that the 5 is no longer there in `InstitutionAwareness_recode`. An example of this is shown in the image below.
+You should see a list of codes in the `InstitutionAwareness` column in the console output and then after you run `dplyr::na_if()`, you should see that the 5 is no longer there in `InstitutionAwareness_recode`. An example of this is shown in the image below.
 
 ![](images/na_if.png){fig-alt="Output in the console that shows the values in InstitutionAwareness and InstitutionAwareness_recode."}
 

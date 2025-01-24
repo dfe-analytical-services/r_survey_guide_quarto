@@ -14,7 +14,7 @@ The data we will be using in this guide will be dummy data. This means that the 
 
 ### Reading SPSS data
 
-In this example, we will load data from a file called `TELS_DUMMY_DATA` from the `data` folder in our R project by using the `haven::read_spss()` function. We need to include the file extension in the name (i.e. .sav in the case of an SPSS file).
+In this example, we will load data from a file called `TELS_DUMMY_DATA` from the `data` folder in our R project by using the `haven::read_spss()` function. We need to include the file extension in the name (i.e., .sav in the case of an SPSS file).
 
 For your data in your own project, you need to replace the file name.
 
@@ -22,11 +22,11 @@ For your data in your own project, you need to replace the file name.
 
 -   Depending on the file size, this step can take a few minutes to run.
 
--   Metadata like value labels are read into background classes (e.g. factors) in R that can be called by code for use in analysis.
+-   Metadata like value labels are read into background classes (e.g., factors) in R that can be called by code for use in analysis.
 
 -   `user_na = FALSE` ensures that user-defined missing values in the SPSS file are read into R as NA.
 
-    -   If you want to bring in these codes into analysis (e.g. you might be interested in the share who refused) change to `TRUE`.
+    -   If you want to bring in these codes into analysis (e.g., you might be interested in the share who refused) change to `TRUE`.
 
 ::: callout-tip
 ## Run the code
@@ -63,13 +63,13 @@ TELSdata_labelled <- haven::as_factor(TELSdata)
 
 ### Data dictionaries
 
-This is a way to display the data dictionary in the RStudio viewer and it provides variable names and value codes/labels, it also calculates an un-weighted frequency table for every variable. You can customize this code to add weighted frequencies and percentages for your variables as well.
+This is a way to display the data dictionary in the RStudio viewer and it provides variable names and value codes/labels, it also calculates an unweighted frequency table for every variable. You can customize this code to add weighted frequencies and percentages for your variables as well.
 
 ::: callout-warning
 Documentation for `sjPlot::view_df()` is not clear on how to display weighted frequencies or percentages. The way to adapt the function is shown below.
 :::
 
-This is the working version of the code that displays a data dictionary with variable names and value codes/labels with un-weighted frequency table for every variable. It also shows weighted frequencies and percentages for your variables. If you don't want to show weighted frequencies or percentages, just omit the following arguments in the function: `weight.by`, `show.wtd.prc` and `show.wtd.freq`.
+This is the working version of the code that displays a data dictionary with variable names and value codes/labels with an unweighted frequency table for every variable. It also shows weighted frequencies and percentages for your variables. If you don't want to show weighted frequencies or percentages, just omit the following arguments in the function: `weight.by`, `show.wtd.prc` and `show.wtd.freq`.
 
 ::: callout-warning
 ## Convert weight column to numeric data type
@@ -181,7 +181,7 @@ data.table::fwrite(TELSdata_dic2, file="TELSdata_dic2.csv")
 If you have CSV data, you can read it in using data.table::fread() like the code below, just change the parts that refer to the name of the file to reflect yours.
 
 ::: callout-note
-CSV data does not contain labels so you will need to refer to the questionnaire or data dictionary and add these manually if you want to produce labelled outputs.
+CSV data does not contain labels, so you will need to refer to the questionnaire or data dictionary and add these manually if you want to produce labelled outputs.
 :::
 
 ::: callout-tip
@@ -196,7 +196,6 @@ Run the code below in the corresponding script in your project.
 pplv_data <- data.table::fread("data/pplv_dummy_data.csv")
 
 ```
-
 
 ### Labelling CSV data manually
 
@@ -220,7 +219,6 @@ pplv_data$futurestudy_consider_bachelors
 After running the code above, you should see just numbers and NAs in the console as shown in the image below.
 
 ![](images/no_labelling.png){fig-alt="Console output showing futurestudy_consider_bachelors without any labels."}
-
 
 Then we are going to create vectors to define your labels as shown in the code below.
 
@@ -330,7 +328,7 @@ pplv_data <- pplv_data %>%
 
 ### Labelling the data automatically using a dictionary
 
-You can use the custom function `labelling_data()` to assign labels to the codes in your data using a dictionary file. You can use this function to save you time when it comes to assigning labels to codes in data instead of assigning them manually as shown above. It allows you to keep the codes in the data, while storing the labels for those codes. It will check if the dictionary has matching variables in the data. If there is a match:
+You can use the custom function `labelling_data()` to assign labels to the codes in your data using a dictionary file. You can use this function to save you time when it comes to assigning labels to codes in data instead of assigning them manually as shown above. It allows you to keep the codes in the data while storing the labels for those codes. It will check if the dictionary has matching variables in the data. If there is a match:
 
 -   the matched variables will be labelled in the data frame.
 -   the matched variables will be labelled with the question text found in the data dictionary (optional – not required if you just want to apply value labels).
@@ -444,7 +442,7 @@ After running the code above, you should see numbers and NAs for `futurestudy_co
 
 Then we will use `labelling_data()` to assign labels to the codes in `pplv` data using the dictionary for that data set.
 
-The columns names in the dictionary that the code loops through in the example below are :
+The column names in the dictionary that the code loops through in the example below are :
 
 -   Value_code - the column where the codes are stored in the dictionary.
 
