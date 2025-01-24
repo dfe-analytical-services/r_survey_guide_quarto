@@ -1,6 +1,6 @@
 ## Introduction {.unnumbered}
 
-This is a guide on how to carry out routine analysis that is usually carried out in SPSS but in R. All the instructions for this guide are on this website and the code is in the scripts in the repository linked on this page in the [Get the code](#get-the-code) section. It includes sections about how to:
+This is a guide on how to carry out routine analysis that is usually carried out in SPSS but in R. All the instructions for this guide are on this website and the code is in the scripts in the repository linked on this page in the [Get the code](#step-2-get-the-code) section. It includes sections about how to:
 
 1.  set up your workspace
 
